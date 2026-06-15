@@ -5,5 +5,3 @@ export interface Produtos {
     created_at: Date;
     updated_at: Date;
 }
-
-

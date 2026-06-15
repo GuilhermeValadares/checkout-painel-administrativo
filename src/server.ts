@@ -1,10 +1,13 @@
 import dotenv from 'dotenv';
 import Express from 'express';
+import rotasProduto from './routes/produtos/routes';
 
 dotenv.config();
 
 const server = Express();
 
-server.listen(process.env.PORT)
+server.use(rotasProduto);
 
-console.log("Rodando")
+server.listen(process.env.PORT);
+
+console.log("Rodando na porta: " + process.env.PORT)
