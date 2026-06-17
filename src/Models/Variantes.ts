@@ -10,4 +10,3 @@ export interface Variantes {
     updated_at: Date;
 }
 
-

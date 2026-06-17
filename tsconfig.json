@@ -6,10 +6,9 @@
     "outDir": "./dist",
 
     // Environment Settings (ts-node clássico / CommonJS)
-    "module": "commonjs",
+    "module": "node16",
     "target": "es2022",
-    "moduleResolution": "node",
-    "ignoreDeprecations": "6.0",
+    "moduleResolution": "node16",
     "esModuleInterop": true,
     "types": ["node"],
 

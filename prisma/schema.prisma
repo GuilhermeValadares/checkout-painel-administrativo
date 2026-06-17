@@ -1,0 +1,31 @@
+generator client {
+  provider            = "prisma-client"
+  output              = "../src/generated/prisma"
+  moduleFormat        = "cjs"
+  importFileExtension = "ts"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Atributos {
+     id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+     nome String
+     valores_atributos valoresAtributos[]
+     created_at DateTime @default(now())
+     updated_at DateTime @updatedAt
+
+}
+
+model valoresAtributos {
+    id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+    id_atributo String @db.Uuid
+    valor String
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
+
+    atributo Atributos @relation(fields: [id_atributo], references: [id])
+
+    @@map("valores_atributos")
+}

@@ -1,7 +1,7 @@
 export interface ValoresAtributos {
-    id: string;
-    id_atributos: string;
+    id?: string ;
+    id_atributo: string;
     valor: string;
-    created_at: Date;
-    updated_at: Date;
+    created_at?: any;
+    updated_at?: any;
 }
