@@ -5,6 +5,8 @@ const routes = Router();
 
 const atributosController = new AtributosController();
 
-routes.post('/atributos', atributosController.adicionar.bind(atributosController));
+routes.post('/atributos', atributosController.adicionar);
+routes.post('/atributos/valor/:id', atributosController.adicionarvaloresAtributos);
+routes.patch('/atributos/:id', atributosController.editarAtributo);
 
 export default routes;

@@ -1,20 +1,18 @@
-import { PrismaFactory } from "../factories/PrismaFactory";
-import { ValoresAtributos } from "../Models/ValoresAtributos";
+import { PrismaFactory } from '../factories/PrismaFactory';
+import { ValoresAtributos } from '../Models/ValoresAtributos';
 
 class ValoresAtributosRepository {
-
     async adicionar(dados: ValoresAtributos[]) {
         return await PrismaFactory.valoresAtributos.createMany({
-            data: dados
+            data: dados,
         });
     }
 
-    async buscarValoresPorIsAtributo(id_atributo: string) {
-
+    async buscarValoresPorIdAtributo(id_atributo: string) {
         return await PrismaFactory.valoresAtributos.findMany({
             where: {
-                id_atributo
-            }
+                id_atributo,
+            },
         });
     }
 }
