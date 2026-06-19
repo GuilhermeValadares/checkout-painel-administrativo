@@ -1,7 +1,9 @@
 import { PrismaFactory } from '../factories/PrismaFactory';
+import { IEditarValorAtributo } from '../Controllers/schemas/AtributosSchema';
 import { ValoresAtributos } from '../Models/ValoresAtributos';
 
 class ValoresAtributosRepository {
+
     async adicionar(dados: ValoresAtributos[]) {
         return await PrismaFactory.valoresAtributos.createMany({
             data: dados,
@@ -15,6 +17,18 @@ class ValoresAtributosRepository {
             },
         });
     }
+
+    async editarValorAtributo(dados: any, id: string) {
+
+        return await PrismaFactory.valoresAtributos.update({
+            where: {
+                id
+            },
+            data: dados
+        });
+    }
+
+
 }
 
 export default ValoresAtributosRepository;

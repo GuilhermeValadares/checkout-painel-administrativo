@@ -22,8 +22,13 @@ export const EditarAtributo = object().shape({
     nome: string().required('O nome é obrigatorio'),
 });
 
+export const EditarValorAtributo = object().shape({
+    valor: string().required("O nome do valor é obrigatorio"),
+});
+
 
 
 export type IAdicionarAtributo = InferType<typeof Adicionar>;
 export type IAdicionarValor = InferType<typeof AdicionarValor>;
 export type IEditarAtributo = InferType<typeof EditarAtributo>;
+export type IEditarValorAtributo = InferType<typeof EditarValorAtributo>;

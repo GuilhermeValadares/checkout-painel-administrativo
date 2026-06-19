@@ -1,6 +1,11 @@
 import { Request, Response } from 'express';
 import { AtributosServiceFactory } from '../factories/AtributoFactory';
-import { Adicionar, AdicionarValor, EditarAtributo } from './schemas/AtributosSchema';
+import {
+    Adicionar,
+    AdicionarValor,
+    EditarAtributo,
+    EditarValorAtributo,
+} from './schemas/AtributosSchema';
 
 class AtributosController {
     async adicionar(req: Request, res: Response) {
@@ -38,29 +43,41 @@ class AtributosController {
         }
     }
 
-    async editarAtributo(req: Request, res:Response) {
+    async editarAtributo(req: Request, res: Response) {
         try {
-
-            await EditarAtributo.validate(req.body)
+            await EditarAtributo.validate(req.body);
 
             if (!req.params.id) {
                 throw new Error('Por favor selecione um atributo para editar');
             }
 
-            const atributoEditado = await AtributosServiceFactory.editarAtributo(req.body, String(req.params.id))
+            const atributoEditado = await AtributosServiceFactory.editarAtributo(
+                req.body,
+                String(req.params.id),
+            );
 
-            res.json({atributoEditado})
-
-        } catch (err:any) {
-            res.status(400).json({error : err.message})
+            res.json({ atributoEditado });
+        } catch (err: any) {
+            res.status(400).json({ error: err.message });
         }
     }
 
-    async editarValorAtributo(req:Request, res: Response) {
+    async editarValorAtributo(req: Request, res: Response) {
         try {
+            await EditarValorAtributo.validate(req.body);
 
-        } catch(err: any) {
-           res.status(400).json({error: err.message})
+            if (!req.params.id) {
+                throw new Error('Por favor selecione um valor de atributo para editar');
+            }
+
+            const valorAtributoEditado = await AtributosServiceFactory.editarValorAtributo(
+                req.body,
+                String(req.params.id),
+            );
+
+            res.json(valorAtributoEditado);
+        } catch (err: any) {
+            res.status(400).json({ error: err.message });
         }
     }
 }
