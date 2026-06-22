@@ -14,6 +14,15 @@ class AtributoRepository {
         });
     }
 
+    async buscarTodosAtributos() {
+
+        return await PrismaFactory.atributos.findMany({
+            include: {
+                valores_atributos: true,
+            }
+        });
+    }
+
 }
 
 export default AtributoRepository;
