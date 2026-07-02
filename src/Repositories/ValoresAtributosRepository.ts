@@ -28,6 +28,16 @@ class ValoresAtributosRepository {
         });
     }
 
+    async deletarValorAtributo(id: string) {
+        return await PrismaFactory.valoresAtributos.update({
+            where: {
+                id,
+            },
+            data: {
+                ativo: false,
+            },
+        });
+    }
 
 }
 

@@ -11,5 +11,5 @@ routes.patch('/atributos/:id', atributosController.editarAtributo);
 routes.patch('/atributos/valor/:id', atributosController.editarValorAtributo);
 routes.get('/atributos', atributosController.buscarTodosAtributos);
 export default routes;
-
-
+routes.delete('/atributos/:id', atributosController.deletarAtributo);
+routes.delete('/atibutos/valor/:id', atributosController.deletarValorAtributo);

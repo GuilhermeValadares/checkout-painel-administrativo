@@ -1,10 +1,11 @@
 //Um Schema é um objeto que define as regras de validação para um determinado campo ou conjunto de campos.
 //O Yup é uma biblioteca de validação de schemas para Node.js.
 
-import { string, object, array, InferType } from 'yup';
+import { string, object, array, InferType, boolean} from 'yup';
 
 export const Adicionar = object().shape({
     nome: string().required('O nome é obrigatorio'),
+    ativo: boolean().nullable(),
     valores: array()
         .of(
             object().shape({

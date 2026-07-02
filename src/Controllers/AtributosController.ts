@@ -10,9 +10,9 @@ import {
 class AtributosController {
     async adicionar(req: Request, res: Response) {
         try {
-            await Adicionar.validate(req.body);
+            const dadosValidados = await Adicionar.validate(req.body);
 
-            const retorno = await AtributosServiceFactory.adicionar(req.body);
+            const retorno = await AtributosServiceFactory.adicionar(dadosValidados);
 
             return res.status(201).json(retorno);
         } catch (error: any) {
@@ -85,9 +85,28 @@ class AtributosController {
         try {
             const retorno = await AtributosServiceFactory.buscarTodosAtributos();
             res.json(retorno);
-
         } catch (err: any) {
             res.status(400).json({ error: err.message });
+        }
+    }
+
+    async deletarAtributo(req: Request, res: Response) {
+        try {
+            const resultado = await AtributosServiceFactory.deletarAtributo(String(req.params.id));
+
+            res.status(200).json(resultado);
+        } catch (err: any) {
+            res.status(400).json({ message: err.message });
+        }
+    }
+
+    async deletarValorAtributo(req: Request, res: Response) {
+        try {
+            const resultado = await AtributosServiceFactory.deletarValorAtributo(String(req.params.id));
+
+            res.status(200).json(resultado);
+        } catch (err: any) {
+            res.status(400).json({ message: err.message });
         }
     }
 }

@@ -12,6 +12,7 @@ datasource db {
 model Atributos {
      id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
      nome String
+     ativo Boolean?
      valores_atributos valoresAtributos[]
      created_at DateTime @default(now())
      updated_at DateTime @updatedAt
@@ -22,10 +23,20 @@ model valoresAtributos {
     id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
     id_atributo String @db.Uuid
     valor String
+    ativo Boolean?
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt
 
     atributo Atributos @relation(fields: [id_atributo], references: [id])
 
     @@map("valores_atributos")
+}
+
+
+model Categorias {
+    id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+    nome String
+    ativo Boolean
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
 }

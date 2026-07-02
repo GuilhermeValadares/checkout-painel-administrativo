@@ -9,7 +9,8 @@ class AtributosService {
     ) {}
 
     async adicionar(data: IAdicionarAtributo) {
-        const atributoAdicionado = await this._atributosRepository.adicionar(data.nome);
+        const payloadAdicionarAtributo = { ativo: data.ativo ?? null, nome: data.nome };
+        const atributoAdicionado = await this._atributosRepository.adicionar(payloadAdicionarAtributo);
 
         const retorno: any = {
             atributo: atributoAdicionado,
@@ -56,6 +57,16 @@ class AtributosService {
 
         return await this._atributosRepository.buscarTodosAtributos();
     }
+
+    async deletarAtributo(id: string) {
+        return await this._atributosRepository.deletarAtributo(id);
+    }
+
+    async deletarValorAtributo(id: string) {
+        return await this._valoresAtributosRepository.deletarValorAtributo(id);
+    }
+
+    
 }
 
 export default AtributosService;
